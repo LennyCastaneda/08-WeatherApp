@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myWeather">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title></title>
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+	<!-- endbower -->
+
+	<!-- inject:css -->
+	<link rel="stylesheet" href="app/content/normalize.css">
+	<link rel="stylesheet" href="app/content/styles.css">
+	<!-- endinject -->
+</head>
+
+<body ng-controller="weatherCtrl as vm">
+
+	<!-- Main container class div-->
+	<div class="container">
+		<div class="well">
+			<header class="main-header">
+				<div class="lead">
+				<h1>Origin Weather Application</h1>
+				<p>Always know if you need an umbrella!</p>	
+				</div>
+			</header> <!-- /header -->
+		</div>
+
+		<div id="buton-group"> <!-- Button class div-->
+			<buton ng-click="vm.getWeather('San Diego')" class="btn btn-primary">San Diego</buton>
+			<buton ng-click="vm.getWeather('Los Angeles')" class="btn btn-primary">Los Angeles</buton>
+			<buton ng-click="vm.getWeather('San Francisco')" class="btn btn-primary">San Francisco</buton>
+			<buton ng-click="vm.getWeather('Phoenix')" class="btn btn-primary">Pheonix</buton>
+			<buton ng-click="vm.getWeather('New York')" class="btn btn-primary">New York</buton>
+		</div> <!-- Button class div-->
+		<form ng-submit="vm.getWeather(vm.citySearch)">
+			<div class="input-group"> <!-- Search bar class div-->
+				<input type="text" class="form-control" placeholder="Search for a city" ng-model="vm.citySearch"></input>
+				<span class='input-group-addon'>
+					<span class="glyphicon glyphicon-search"></span>
+				</span>
+			</div> <!-- Search bar class div-->
+		</form>
+
+		<div class="row" id="weather-panel"> <!-- Row class div-->
+
+			<div class="col-sm-6"> <!-- City Info Column class div-->
+				<div class="panel panel-info"> 	<!-- Panel container div-->
+					<div class="panel-heading">
+						City Information
+					</div>
+					<div class="panel-body"> <!-- Panel-body container div-->
+						<div class="row">
+							<div class="text-center col-xs-6 col-sm-offset-3 col-xs-offset-3">
+								
+								<div class="row">
+									<div class="col-md-2">
+										<!-- Image icon by Icons8 -->								
+										<img ng-src="http://openweathermap.org/img/w/{{vm.data.weather[0].icon}}.png" />
+									</div>
+									<div class="col-md-4">
+										<h4>{{vm.data.name}}</h4>
+										<p>Lat/Long: {{vm.data.coord.lon}}{{vm.data.coord.lat}}</p>									
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<hr>
+						<div  class="col-lg-4 col-lg-offset-1 col-xs-3 col-sm-offset-2 col-xs-offset-1">
+								<b>Temperature(F)</b>
+								<h6>{{vm.data.main.temp | number : 0}}</h6>
+								<br>
+								<b>Lowest Temp(F)</b>
+								<h6>{{vm.data.main.temp_min | number : 0}}</h6>
+						</div>
+						<div  class="col-xs-3">
+								<b>Pressure</b>
+								<h6>{{vm.data.main.pressure | number}}</h6>
+								<br>
+								<b>Higest Temp(F)</b>
+								<h6>{{vm.data.main.temp_max | number : 0}}</h6>
+						</div>
+						<div  class="col-xs-3">
+								<b>Humidity</b>
+								<h6>{{vm.data.main.humidity}}%</h6>
+								<br>
+								<b>Wind Speed</b>
+								<h6>{{vm.data.wind.speed}}</h6>
+						</div>						
+					</div> <!-- Panel-body container div-->
+				</div> <!-- Panel container div-->
+			</div> <!-- column class div-->
+
+
+			<div class="col-sm-6"> <!-- Search history Column class div-->
+				<div class="panel panel-info"> 	<!-- Panel container div-->
+					<div class="panel-heading">
+						Search History
+					</div>
+					<div class="panel-body"> <!-- Panel-body container div-->
+						<div class="row">
+							<table class="table table borderless table-striped">
+								<tbody ng-model="vm.histories">
+									<tr ng-repeat="history in vm.histories">
+										<td>
+											{{history.name}}
+										</td>
+										<td class="text-right">
+											{{history.date | date: 'HH:mm:HH MM-dd-yyyy'}}
+										</td>
+									</tr>								
+								</tbody>
+							</table>
+						</div>						
+					</div> <!-- Panel-body container div-->
+				</div> <!-- Panel container div-->
+			</div> <!-- Search history Column class div-->
+		</div> <!-- Row class div-->
+		
+
+	<div>
+		<a href="https://icons8.com">Icon pack by Icons8</a>
+	</div>
+
+	</div> <!-- Main container class div-->
+
+
+	<!-- bower:js -->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+	<!-- endbower -->
+
+    <!-- inject:js -->
+	<script src="app/app.js"></script>
+	<script src="app/weather/weather.controller.js"></script>
+	<script src="app/weather/weather.factory.js"></script>
+	<!-- endinject -->
+</body>
+</html>

@@ -1,0 +1,39 @@
+/* ================================= 
+  Base Element Styles
+==================================== */
+
+
+
+/* ================================= 
+  Base Layout Styles
+==================================== */
+
+/* ---- Main header jumbotron ---- */
+
+.main-header {
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+
+/*========================================
+* 	Table
+=========================================*/
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+
+.weather-pic {
+	margin-top: 1.75em;
+}
+
+div#weather-panel {
+	margin-top:  1em;
+}
