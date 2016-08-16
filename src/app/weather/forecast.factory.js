@@ -3,23 +3,23 @@
 
     angular
         .module('myWeather')
-        .factory('weatherFactory', weatherFactory);
+        .factory('forcastFactory', forecastFactory);
 
-    weatherFactory.$inject = ['$http', '$q'];
+    forecastFactory.$inject = ['$http', '$q'];
 
     /* @ngInject */
-    function weatherFactory($http, $q) {
+    function forecastFactory($http, $q) {
         var service = {
-            getWeather: getWeather
+            getForecast : getForecast
         };
         return service;
 
         ////////////////
 
-        function getWeather(cityName) {
+        function getForecast(cityName) {
             var defer = $q.defer();
 
-            $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&APPID=1d4d814e80fc783e2a58bf980adb2aa7' + '&units=imperial').then(
+            $http.get('http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&APPID=1d4d814e80fc783e2a58bf980adb2aa7' + '&units=imperial').then(
                 function(response) {
                     if (typeof response.data === 'object') {
                         defer.resolve(response.data);

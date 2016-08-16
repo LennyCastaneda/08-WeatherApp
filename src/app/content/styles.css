@@ -1,18 +1,25 @@
 /* ================================= 
-  Base Element Styles
-==================================== */
-
-
-
-/* ================================= 
   Base Layout Styles
 ==================================== */
+
+* {
+  box-sizing: border-box;
+}
 
 /* ---- Main header jumbotron ---- */
 
 .main-header {
 	padding-top: .5em;
 	padding-bottom: .5em;
+}
+
+.col-md-2, .col-md-offset-6 {
+	padding-left:  5%;
+}
+
+
+.forcast {
+	padding-left: 10%;
 }
 
 /*========================================
@@ -36,4 +43,52 @@ table {
 
 div#weather-panel {
 	margin-top:  1em;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
+
+@media (min-width: 769px) { /* When screen is 769px or wider, these styles are applied */
+
+  .text-center, .col-xs-6, .col-sm-offset-3, .col-xs-offset-3 {
+    margin: 0 auto;   /* setting left & right margins to auto centers the container in the browser */ 	
+  }
+
+  .col-xs-3 {
+  	padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .wrap {
+  min-height: cacl(100vh - 89px); /* Calculating 100% of viewport heigth minus footer height 89px */
+  }
+
+  .container {
+    width: 100%;        /* Giving containers a width prevents stretching too wide on larger screens */
+    max-width: 1000px;
+    margin: 0 auto;   /* setting left & right margins to auto centers the container in the browser */
+  }
+
+
+  /* ---- Float clearfix ---- */
+
+  .clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+  
+}
+
+
+/* In this break point, all 3 columns will be layed out side-by-side on the same line  */
+
+@media (min-width: 1025px) {   /* When screen is 1025px or wider, these styles are applied */
+  
+  .container {
+    width: 80%;
+    max-width: 1150px; /* layout screen doesn't get too wide, when screen is 1025px or wider */
+  }
+   
 }
